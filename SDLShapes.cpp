@@ -12,6 +12,7 @@
 
 namespace sp {
 
+// Color Presets 
 const RGB8 Red = {(char) 255, 0, 0};
 const RGB8 Green = {0, (char) 255, 0};
 const RGB8 Blue = {0, 0, (char) 255};
@@ -21,17 +22,23 @@ const RGB8 Teal = {0, (char) 255, (char) 255};
 const RGB8 White = {(char) 255, (char) 255, (char) 255};
 const RGB8 Black = {0, 0, 0};
 
+/* Draws a pixel at a specified point on a surface. The pixel cannot be drawn
+ * beyond the bounds of the surface. */
 void DrawPixel(SDL_Surface* drawSurface, const int &Xpos, const int &Ypos, const RGB8 &color) {
 	if( Xpos >= 0 && Xpos < drawSurface->w && Ypos >= 0 && Ypos < drawSurface->h)
 		((Uint32*)drawSurface->pixels)[Ypos * drawSurface->pitch/4 + Xpos] = SDL_MapRGB(drawSurface->format, color.R, color.G, color.B);
 }
 
+/* Swaps two integers. SwapInt is a requisite for DrawLine() */
 void SwapInt(int &a, int &b) {
 	int aBuffer = a;
 	a = b;
 	b = aBuffer;
 }
 
+/* Draws line with given points, point componants, or line struct to a passed SDL screen.
+ * Colors of the lines can be changed to presets or custom colors. The default
+  * color is white. */
 void DrawLine(SDL_Surface* drawSurface, int x1, int y1, int x2, int y2, const RGB8 &color) {
 	bool step = abs(x1 - x2) < abs(y1 - y2);
 	if(step) { SwapInt(x1, y1); SwapInt(x2, y2); }
@@ -55,6 +62,9 @@ void DrawLine(SDL_Surface* drawSurface, int x1, int y1, int x2, int y2, const RG
 void DrawLine(SDL_Surface* drawSurface, const line &src, const RGB8 &color) {
 	DrawLine(drawSurface, src.p1.x, src.p1.y, src.p2.x, src.p2.y, color);
 }
+/* Draws hollow circle with a passed point and radius, or circle struct. Function draws
+ * circle onto a passed SDL screen. Can be given different colors. The default
+  * is white. */
 void DrawCircle(SDL_Surface* drawSurface, const int &x, const int &y, const int &r, const RGB8 &color) {
 	int x1, x2, y1, y2;
 	int precision = 2;
@@ -100,7 +110,4 @@ void DrawRect(SDL_Surface* drawSurface, const int &x1, const int &y1, const int 
 	}
 }
 */
-
-
-
 };
