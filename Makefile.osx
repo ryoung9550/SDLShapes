@@ -4,17 +4,20 @@
 CXX=clang
 CXXFLAGS=-Wall -W -std=c++14
 CXXFLAGS += $(sdl2-config --cflags --libs)
+unamestr=$(uname)
+mac=Darwin
+linux=Linux
 
-default: libSDLShapes.a libSDLShapes.so
+default: libSDLShapes.a libSDLShapes.dylib
 
 libSDLShapes.a: SDLShapes.o
 	ar -rcv $@ $^
 
-libSDLShapes.so: SDLShapes.o
-	$(CXX) -shared -o $@ $^
+libSDLShapes.dylib: SDLShapes.o
+	$(CXX) -dynamiclib -undefined suppress -flat_namespace -o $@ $^
 
 SDLShapes.o: SDLShapes.cpp SDLShapes.hpp
 	$(CXX) -c -fPIC SDLShapes.cpp -o $@ $(CXXFLAGS)
 
 clean:
-	rm *.o *.so *.a
+	rm *.o *.dylib *.a
