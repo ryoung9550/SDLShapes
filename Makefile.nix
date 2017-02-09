@@ -4,9 +4,6 @@
 CXX=clang
 CXXFLAGS=-Wall -W -std=c++14
 CXXFLAGS += $(sdl2-config --cflags --libs)
-unamestr=$(uname)
-mac=Darwin
-linux=Linux
 
 default: libSDLShapes.a libSDLShapes.so
 
