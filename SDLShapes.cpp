@@ -59,6 +59,10 @@ void DrawLine(SDL_Surface* drawSurface, int x1, int y1, int x2, int y2, const RG
 		}
 	}
 }
+
+void DrawLine(SDL_Surface* drawSurface, const point &p1, const point &p2, const RGB8 &color) {
+	DrawLine(drawSurface, p1.x, p1.y, p2.x, p2.y, color);
+}
 void DrawLine(SDL_Surface* drawSurface, const line &src, const RGB8 &color) {
 	DrawLine(drawSurface, src.p1.x, src.p1.y, src.p2.x, src.p2.y, color);
 }
@@ -99,15 +103,11 @@ void DrawRect(SDL_Surface* drawSurface, const int &x1, const int &y1, const int 
 	DrawLine(drawSurface, x3, y3, x4, y4, color);
 	DrawLine(drawSurface, x1, y1, x4, y4, color);
 }
-/*void DrawFillRect(SDL_Surface* drawSurface, const int &x1, const int &y1, const int &x2, const int &y2, const int &x3, const int &y3, const int &x4, const int &y4, const RGB8 &color) {
-	DrawRect(drawSurface, x1, y1, x2, y2, x3, y3, x4, y4, color);
-	vector<int> yhigh, ylow;
-	int smallX, bigX;
-	smallX = min(x1, min(x2, min(x3, x4)));
-	bigX = max(x1, max(x2, max(x3, x4)));
-	for( int i = smallX; i < bigX; ++i) {
-		if(	
-	}
+
+void DrawTriangle(SDL_Surface* drawSurface, const point &p1, const point &p2, const point &p3, const RGB8 &color = White) {
+	DrawLine(drawSurface, p1, p2, color);
+	DrawLine(drawSurface, p2, p3, color);
+	DrawLine(drawSurface, p3, p1, color);
 }
-*/
+
 };

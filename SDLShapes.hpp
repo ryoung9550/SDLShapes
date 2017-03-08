@@ -32,6 +32,7 @@ void SwapInt(int &a, int&b);
  * Colors of the lines can be changed to presets or custom colors. The default
  * color is white. */
 void DrawLine(SDL_Surface* drawSurface, int x1, int y1, int x2, int y2, const RGB8 &color = White);
+void DrawLine(SDL_Surface* drawSurface, const point &p1, const point &p2, const RGB8 &color = White);
 void DrawLine(SDL_Surface* drawSurface, const line &src, const RGB8 &color = White);
 
 /* Draws hollow circle with a passed point and radius, or circle struct. Function draws
@@ -46,11 +47,7 @@ void DrawCircle(SDL_Surface* drawSurface, const circle &src, const RGB8 &color =
  * default is white. */
 void DrawFillCircle(SDL_Surface* drawSurface, const int &x, const int &y, const int &r, const RGB8 &color = White);
 
-/* Draws a hollow rectangle with given points or rect struct onto a passed SDL
- * surface. Rectangle can be given different colors. The default color is
- * white. */
-//void DrawRect(SDL_Surface* drawSurface, const int &x1, const int &y1, const int &x2, const int &y2, const int &x3, const int &y3, const int &x4, const int &y4, const RGB8 &color = White);
-//void DrawFillRect(SDL_Surface* drawSurface, const int &x1, const int &y1, const int &x2, const int &y2, const int &x3, const int &y3, const int &x4, const int &y4, const RGB8 &color = White);
+void DrawTriangle(SDL_Surface* drawSurface, const point &p1, const point &p2, const point &p3, const RGB8 &color);
 
 }; // namespace sp
 
